@@ -1,6 +1,5 @@
-sales-analytics-dashboard/
-│
-├── app.py
-├── requirements.txt
-├── data/
-├── .streamlit/
+streamlit==1.57.0
+pandas==2.3.3
+plotly==6.7.0
+scikit-learn==1.7.2
+numpy==2.2.6
