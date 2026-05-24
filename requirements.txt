@@ -1,0 +1,6 @@
+sales-analytics-dashboard/
+│
+├── app.py
+├── requirements.txt
+├── data/
+├── .streamlit/
