@@ -1,4 +1,4 @@
-from sklearn.linear_model import LinearRegression
+from numpy.polynomial.polynomial import polyfit
 import numpy as np
 import streamlit as st
 import pandas as pd
@@ -150,18 +150,16 @@ st.subheader("📈 Sales Forecasting")
 forecast_df = sales_trend.copy()
 
 forecast_df["Days"] = np.arange(len(forecast_df))
-
-X = forecast_df[["Days"]]
-y = forecast_df["Sales"]
-
-model = LinearRegression()
-model.fit(X, y)
-
 future_days = 30
 
-future_x = np.arange(len(forecast_df), len(forecast_df) + future_days).reshape(-1, 1)
+x = np.arange(len(forecast_df))
+y = forecast_df["Sales"].values
 
-predictions = model.predict(future_x)
+b, m = polyfit(x, y, 1)
+
+future_x = np.arange(len(forecast_df), len(forecast_df) + future_days)
+
+predictions = b + m * future_x
 
 future_dates = pd.date_range(
     start=forecast_df["Order Date"].max(),
